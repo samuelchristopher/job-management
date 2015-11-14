@@ -17,9 +17,29 @@ module.exports = function (app, express) {
         res.send(error);
         return;
       }
-        res.json({
-          message: 'User has been created'
+      res.json({
+        message: 'User has been created'
+      });
+    });
+  });
+
+  api.post('/login', function(req, res) {
+    ref.authWithPassword({
+      email    : req.body.email,
+      password : req.body.password
+    }, function(error, authData) {
+      if (error) {
+        res.send({
+          message: error
         });
+      } else {
+        res.json({
+          success: true,
+          message: "Succesfully logged in",
+          authData,
+          token: authData.token
+        });
+      }
     });
   });
 
