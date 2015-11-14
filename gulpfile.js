@@ -14,7 +14,7 @@ var env        = process.env.NODE_ENV || 'development';
 var outputDir = 'build';
 
 gulp.task('jade', function() {
-  return gulp.src('src/views/**/*.jade')
+  return gulp.src('app/src/views/**/*.jade')
         .pipe(jade())
         .pipe(gulp.dest(outputDir))
         .pipe(connect.reload());
@@ -22,7 +22,7 @@ gulp.task('jade', function() {
 
 
 gulp.task('js', function() {
-  return browserify('src/js/main.js', { debug: env === 'development' })
+  return browserify('app/src/js/main.js', { debug: env === 'development' })
         .bundle()
         .pipe(source('bundle.js'))
         .pipe(gulpif(env === 'production',  streamify(uglify())))
@@ -37,7 +37,7 @@ gulp.task('css', function() {
     config.outputStyle = 'compressed';
   }
 
-  return gulp.src('src/sass/main.sass')
+  return gulp.src('app/src/sass/main.sass')
         .pipe(gulpif(env === 'development', sourcemaps.init()))
         .pipe(sass(config))
         .pipe(gulpif(env === 'development', sourcemaps.write()))
@@ -59,9 +59,9 @@ gulp.task('server', function() {
 });
 
 gulp.task('watch', function() {
-  gulp.watch('src/views/**/*', ['jade']);
-  gulp.watch('src/js/**/*.js', ['js']);
-  gulp.watch('src/sass/**/*.sass', ['css']);
+  gulp.watch('app/src/views/**/*', ['jade']);
+  gulp.watch('app/src/js/**/*.js', ['js']);
+  gulp.watch('app/src/sass/**/*.sass', ['css']);
 });
 
 gulp.task('default', ['js', 'jade', 'css', 'watch', 'connect', 'server']);
