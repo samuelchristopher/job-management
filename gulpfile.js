@@ -8,6 +8,7 @@ var gulpif     = require('gulp-if');
 var sass       = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var connect    = require('gulp-connect');
+var nodemon    = require('gulp-nodemon');
 
 var env        = process.env.NODE_ENV || 'development';
 var outputDir = 'build';
@@ -51,10 +52,16 @@ gulp.task('connect', function() {
   });
 });
 
+gulp.task('server', function() {
+  nodemon({
+    script: 'index.js'
+  });
+});
+
 gulp.task('watch', function() {
   gulp.watch('src/views/**/*', ['jade']);
   gulp.watch('src/js/**/*.js', ['js']);
   gulp.watch('src/sass/**/*.sass', ['css']);
 });
 
-gulp.task('default', ['js', 'jade', 'css', 'watch', 'connect']);
+gulp.task('default', ['js', 'jade', 'css', 'watch', 'connect', 'server']);

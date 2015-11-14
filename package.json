@@ -22,6 +22,7 @@
     "gulp-connect": "^2.2.0",
     "gulp-if": "^2.0.0",
     "gulp-jade": "^1.1.0",
+    "gulp-nodemon": "^2.0.4",
     "gulp-sass": "^2.1.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-streamify": "^1.0.2",
@@ -32,6 +33,9 @@
     "angular": "^1.4.7",
     "angular-animate": "^1.4.7",
     "angular-aria": "^1.4.7",
-    "angular-material": "^0.11.4"
+    "angular-material": "^0.11.4",
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
+    "morgan": "^1.6.1"
   }
 }
