@@ -44,7 +44,7 @@ module.exports = function (app, express) {
     });
   });
 
-  app.use(function (req, res, next) {
+  api.use(function (req, res, next) {
     console.log('Welcome');
 
     var token = req.body.token || req.param('token') || req.headers['x-access-token'];
@@ -54,7 +54,7 @@ module.exports = function (app, express) {
         if(err) {
           res.status(403).send({
             success: false,
-            message: "Failed to authenticate user"
+            message: 'Failed to authenticate user'
           });
         } else {
           req.decoded = decoded;
@@ -67,6 +67,10 @@ module.exports = function (app, express) {
         message: 'No token provided'
       });
     }
+  });
+
+  api.get('/', function(req, res) {
+    res.json("Hello world");
   });
 
   return api;
