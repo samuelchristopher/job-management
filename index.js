@@ -3,7 +3,9 @@ var morgan     = require('morgan');
 var bodyParser = require('body-parser');
 var config     = require('./app/config');
 var path       = require('path');
+var firebase   = require('firebase');
 
+var db  = new firebase(config.database);
 var app = express();
 
 app.set('view engine', 'jade');
