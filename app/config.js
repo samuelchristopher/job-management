@@ -1,5 +1,5 @@
 module.exports = {
   database: "https://job-management.firebaseio.com/",
   port: process.env.PORT || 3000,
-  secretKey: "dhfkjhdkjhf@$$%^32alghlfj3457-5t7t7e09rkjfg455r87367349yer",
+  secret: "ItnI4eE0xDDwKqvEPPfJsl3rJcasQtbKxPjhdt7R",
 }
