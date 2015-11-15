@@ -4,4 +4,6 @@ var angularMaterial = require('angular-material');
 var angularAria     = require('angular-aria');
 var app             = require('./app');
 var MainCtrl        = require('./Controllers/MainCtrl');
+var authServcie = require('./Services/authService');
 var firebase        = require('./src/firebase');
+var angularfire     = require('angularfire');

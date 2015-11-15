@@ -1,1 +1,1 @@
-angular.module('jobManagementApp', ['ngMaterial']);
+angular.module('jobManagementApp', ['ngMaterial', 'firebase']);
