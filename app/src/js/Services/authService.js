@@ -39,4 +39,26 @@ angular.module('jobManagementApp')
     };
 
   }
-]);
+])
+
+.factory('AuthToken', ['$window', function($window) {
+
+  var authTokenFactory = {};
+
+  authTokenFactory.getToken = function() {
+    return $window.localStorage.getItem('token');
+  };
+
+  authTokenFactory.setToken = function(token) {
+    if(token) {
+      $window.localStorage.setItem('token', token);
+    } else {
+      $window.localStorage.removeItem('token');
+    }
+  };
+
+  authTokenFactory.getUser = function () {
+    return $window.localStorage.getItem('firebase:session::job-management');
+  }
+
+}]);
