@@ -21,22 +21,24 @@ angular.module('jobManagementApp')
     };
 
     authFactory.isLoggedIn = function() {
-      if(AuthToken.getToken()) {
+      if(AuthToken.getUser()) {
         return true;
       } else {
         return false;
       }
     };
 
-    authFactory.getUser = function() {
-      if(AuthToken.getToken()) {
-        return authData;
+    authFactory.getUserData = function() {
+      if(AuthToken.getUser()) {
+        return AuthToken.getUser();
       } else {
         return $q.reject({
           message: 'User has no token'
         });
       }
     };
+
+    return authFactory;
 
   }
 ])
@@ -60,5 +62,31 @@ angular.module('jobManagementApp')
   authTokenFactory.getUser = function () {
     return $window.localStorage.getItem('firebase:session::job-management');
   }
+
+  return authTokenFactory;
+
+}])
+
+.factory('AuthInterceptor', ['$q', '$location', 'AuthToken', function($q, $location, AuthToken) {
+
+  var interceptorFactory = {};
+
+  interceptorFactory.request = function(config) {
+    var token = AuthToken.getUser().token;
+
+    if(token) {
+      config.headers['x-access-token'] = token;
+    }
+
+    return config;
+  };
+
+  interceptorFactory.responseError = function(res) {
+    if(res.status === 403) {
+      $location.path('/login');
+    }
+
+    return $q.reject(res);
+  };
 
 }]);
