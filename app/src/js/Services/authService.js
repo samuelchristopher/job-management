@@ -28,9 +28,9 @@ angular.module('jobManagementApp')
       }
     };
 
-    authFactory.getUserData = function() {
-      if(AuthToken.getUser()) {
-        return AuthToken.getUser();
+    authFactory.getUser = function() {
+      if(AuthToken.getUserData()) {
+        return AuthToken.getUserData();
       } else {
         return $q.reject({
           message: 'User has no token'
@@ -59,7 +59,7 @@ angular.module('jobManagementApp')
     }
   };
 
-  authTokenFactory.getUser = function () {
+  authTokenFactory.getUserData = function () {
     return $window.localStorage.getItem('firebase:session::job-management');
   }
 
@@ -89,4 +89,5 @@ angular.module('jobManagementApp')
     return $q.reject(res);
   };
 
+  return interceptorFactory;
 }]);
