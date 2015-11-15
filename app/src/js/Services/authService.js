@@ -1,4 +1,4 @@
-angular.module('jobManagementApp')
+angular.module('authService',  [])
   .factory('Auth',['$q', '$scope', '$firebaseAuth', 'AuthToken',
   function($q, $scope, $firebaseAuth, AuthToken) {
     var ref = new Firebase('https://job-management.firebaseio.com');

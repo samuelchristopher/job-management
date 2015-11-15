@@ -17,9 +17,9 @@ app.use(express.static('build'));
 app.use('/api', api);
 
 
-// app.get('*', function(req, res) {
-//   res.render('index', { a: "John" });
-// });
+app.get('*', function(req, res) {
+  res.render('index', { a: "John" });
+});
 
 app.listen(config.port, function(err) {
   if (err) {

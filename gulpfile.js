@@ -45,12 +45,12 @@ gulp.task('css', function() {
         .pipe(connect.reload());
 });
 
-gulp.task('connect', function() {
-  connect.server({
-    root: outputDir,
-    livereload: true
-  });
-});
+// gulp.task('connect', function() {
+//   connect.server({
+//     root: outputDir,
+//     livereload: true
+//   });
+// });
 
 gulp.task('server', function() {
   nodemon({
@@ -64,4 +64,4 @@ gulp.task('watch', function() {
   gulp.watch('app/src/sass/**/*.sass', ['css']);
 });
 
-gulp.task('default', ['js', 'jade', 'css', 'watch', 'connect', 'server']);
+gulp.task('default', ['js', 'jade', 'css', 'watch', 'server']);

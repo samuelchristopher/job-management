@@ -1,6 +1,7 @@
-angular.module('jobManagementApp')
-  .controller('MainCtrl', ['$rootScope', 'Auth', '$scope', '$mdSidenav' ,function($rootScope, Auth, $scope, $mdSidenav) {
+angular.module('mainCtrl', [])
+  .controller('MainController', ['$rootScope', 'Auth', '$scope', '$mdSidenav', function($rootScope, Auth, $scope, $mdSidenav) {
     $scope.thing = 'It works?';
+    $scope.something = 'Something to say';
 
     $scope.toggleSidenav = function(menuId) {
       $mdSidenav(menuId).toggle();

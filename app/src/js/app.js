@@ -1,1 +1,1 @@
-angular.module('jobManagementApp', ['ngMaterial', 'firebase']);
+angular.module('jobManagementApp', ['authService', 'mainCtrl', 'appRoutes']);
