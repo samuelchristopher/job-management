@@ -38,29 +38,44 @@ module.exports = function (app, express) {
           success: true,
           message: "Succesfully logged in",
           authData,
-          token: authData.token
+          token: authData.token,
+          email: authData.password.email
         });
       }
     });
   });
 
   api.use(function (req, res, next) {
-    console.log('Welcome');
 
     var token = req.body.token || req.param('token') || req.headers['x-access-token'];
 
     if(token) {
-      jwt.verify(token, secret, function(err, decoded) {
-        if(err) {
+      function authHandler(error, authData) {
+        if (error) {
           res.status(403).send({
             success: false,
             message: 'Failed to authenticate user'
           });
         } else {
-          req.decoded = decoded;
-          next();
+          req.auth = authData;
         }
-      });
+      }
+
+      ref.authWithCustomToken(token, authHandler);
+      next();
+
+
+      // jwt.verify(token, secret, function(err, decoded) {
+      //   if(err) {
+      //     res.status(403).send({
+      //       success: false,
+      //       message: 'Failed to authenticate user'
+      //     });
+      //   } else {
+      //     req.decoded = decoded;
+      //     next();
+      //   }
+      // });
     } else {
       res.status(403).send({
         success: false,
@@ -69,9 +84,24 @@ module.exports = function (app, express) {
     }
   });
 
-  api.get('/', function(req, res) {
-    res.json("Hello world");
-  });
+
+  api.route('/')
+    .post(function(req, res) {
+      var jobsRef = ref.child('jobs');
+      var authData = ref.getAuth();
+      var newJobRef = jobsRef.push();
+      newJobRef.set({
+        createdBy: ref.getAuth().uid,
+        name: req.body.name,
+        createdAt: Date.now()
+      });
+      res.json({
+        message: 'New job added'
+      });
+    })
+    .get(function(req, res) {
+      var jobsRef = ref.child('jobs');
+    })
 
   return api;
 
