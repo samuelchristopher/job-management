@@ -8,14 +8,18 @@ var gulpif     = require('gulp-if');
 var sass       = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var connect    = require('gulp-connect');
-var nodemon    = require('gulp-nodemon');
+var html       = require('gulp-minify-html');
 
 var env        = process.env.NODE_ENV || 'development';
 var outputDir = 'build';
 
-gulp.task('jade', function() {
-  return gulp.src('app/src/views/**/*.jade')
-        .pipe(jade())
+gulp.task('html', function() {
+  var opts = {
+    empty: true,
+    spare: true,
+  };
+  return gulp.src('app/src/views/**/*.html')
+        .pipe(html())
         .pipe(gulp.dest(outputDir))
         .pipe(connect.reload());
 });
@@ -45,23 +49,18 @@ gulp.task('css', function() {
         .pipe(connect.reload());
 });
 
-// gulp.task('connect', function() {
-//   connect.server({
-//     root: outputDir,
-//     livereload: true
-//   });
-// });
-
-gulp.task('server', function() {
-  nodemon({
-    script: 'index.js'
+gulp.task('connect', function() {
+  connect.server({
+    root: outputDir,
+    livereload: true
   });
 });
 
 gulp.task('watch', function() {
-  gulp.watch('app/src/views/**/*', ['jade']);
+  // gulp.watch('app/src/views/**/*', ['jade']);
+  gulp.watch('app/src/views/**/*.html', ['html']);
   gulp.watch('app/src/js/**/*.js', ['js']);
   gulp.watch('app/src/sass/**/*.sass', ['css']);
 });
 
-gulp.task('default', ['js', 'jade', 'css', 'watch', 'server']);
+gulp.task('default', ['js', 'html', 'css', 'watch', 'connect']);

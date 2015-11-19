@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app="jobManagement">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Management</title>
+    <link rel="stylesheet" href="/css/main.css" charset="utf-8">
+  </head>
+  <body ng-controller="MainController">
+    <div class="main">
+      <md-toolbar layout="row">
+        <div class="md-toolbar-tools">
+          <md-button hide-gt-sm="hide-gt-sm" class="md-icon-button"><md-icon aria-label="Menu" ng-click="toggleSidenav('left')" md-svg-icon="https://s3-us-west-2.amazonaws.com/s.cdpn.io/68133/menu.svg">
+          </md-icon></md-button>
+          <h1>{{ thing }}</h1>
+        </div>
+      </md-toolbar>
+    </div>
+    <div class="main" layout="row" flex>
+      <md-sidenav layout="column" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" class="md-sidenav-left md-whiteframe-4dp"><md-button class="md-accent">Sales Assistant</md-button>
+        <md-button class="md-accent">Technician</md-button>
+      </md-sidenav>
+      <div id="content" layout="column" flex>
+        <md-content layout="column" flex class="md-padding">
+          <md-card>
+            <md-card-content></md-card-content>
+              <md-button>{{ thing }}</md-button>
+          </md-card>
+        </md-content>
+      </div>
+    </div>
+    <script src="/js/bundle.js" charset="utf-8"></script>
+  </body>
+</html>
