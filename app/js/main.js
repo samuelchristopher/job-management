@@ -9,3 +9,4 @@ var app             = require('./app');
 var MainController  = require('./controllers/MainController');
 var HomeController  = require('./controllers/HomeController');
 var config          = require('./config');
+var flash           = require('./services/flash');

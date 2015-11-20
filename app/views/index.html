@@ -22,6 +22,7 @@
       </md-sidenav>
       <div layout="column" flex id="content">
         <md-content layout="column" flex class="md-padding">
+          <md-toast ng-show="flash"><span flex>{{ flash }}</span></md-toast>
           <md-card>
             <md-card-content ng-view></md-card-content>
           </md-card>

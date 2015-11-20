@@ -1,6 +1,6 @@
 angular.module('jobManagement')
-  .controller('HomeController', ['$scope', HomeController]);
+  .controller('HomeController', ['$scope', 'FlashService', HomeController]);
 
-function HomeController($scope) {
+function HomeController($scope, FlashService) {
   $scope.thing = 'It works!';
 }
