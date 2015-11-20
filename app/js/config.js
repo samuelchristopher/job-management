@@ -1,8 +1,9 @@
 angular.module('jobManagement')
-  .config(['$routeProvider', '$location',function($routeProvider, $location) {
+  .config(['$routeProvider', function($routeProvider) {
     $routeProvider
       .when('/', {
-        template: '<h1>{{ thing }}</h1>',
+        templateUrl: 'pages/home.html',
         controller: 'HomeController'
-      });
+      })
+      .otherwise({ redirectTo: '/' });
   }]);
