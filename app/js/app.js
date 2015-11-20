@@ -1,1 +1,1 @@
-angular.module('jobManagement', ['ngMaterial']);
+angular.module('jobManagement', ['ngMaterial', 'ngRoute']);
