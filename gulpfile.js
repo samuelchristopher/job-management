@@ -18,7 +18,7 @@ gulp.task('html', function() {
     empty: true,
     spare: true,
   };
-  return gulp.src('app/src/views/**/*.html')
+  return gulp.src('app/views/**/*.html')
         .pipe(html())
         .pipe(gulp.dest(outputDir))
         .pipe(connect.reload());
@@ -26,7 +26,7 @@ gulp.task('html', function() {
 
 
 gulp.task('js', function() {
-  return browserify('app/src/js/main.js', { debug: env === 'development' })
+  return browserify('app/js/main.js', { debug: env === 'development' })
         .bundle()
         .pipe(source('bundle.js'))
         .pipe(gulpif(env === 'production',  streamify(uglify())))
@@ -41,7 +41,7 @@ gulp.task('css', function() {
     config.outputStyle = 'compressed';
   }
 
-  return gulp.src('app/src/sass/main.sass')
+  return gulp.src('app/sass/main.sass')
         .pipe(gulpif(env === 'development', sourcemaps.init()))
         .pipe(sass(config))
         .pipe(gulpif(env === 'development', sourcemaps.write()))
@@ -57,10 +57,10 @@ gulp.task('connect', function() {
 });
 
 gulp.task('watch', function() {
-  // gulp.watch('app/src/views/**/*', ['jade']);
-  gulp.watch('app/src/views/**/*.html', ['html']);
-  gulp.watch('app/src/js/**/*.js', ['js']);
-  gulp.watch('app/src/sass/**/*.sass', ['css']);
+  // gulp.watch('app/views/**/*', ['jade']);
+  gulp.watch('app/views/**/*.html', ['html']);
+  gulp.watch('app/js/**/*.js', ['js']);
+  gulp.watch('app/sass/**/*.sass', ['css']);
 });
 
 gulp.task('default', ['js', 'html', 'css', 'watch', 'connect']);
