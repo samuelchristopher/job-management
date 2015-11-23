@@ -14,7 +14,7 @@ function FlashService($rootScope, $mdToast) {
             .content(message)
             .action(action)
             .highlightAction(false)
-            .position('top right');
+            .position('bottom left');
       $mdToast.show(toast);
     },
   };
