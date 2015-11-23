@@ -34,10 +34,21 @@ function Auth($firebaseAuth, $rootScope, FlashService, $location) {
 
   var authRef = $firebaseAuth(ref);
 
+  var createUser = function(email, password) {
+    authObj.$createUser({
+      email: email,
+      password: password
+    }).then(function(userData) {
+      FlashService.toast('Welcome to the family', 'OK');
+      login(email, password);
+    });
+  };
+
   return {
     login: login,
     logout: logout,
     getAuth: getAuth,
-    authRef: authRef
+    authRef: authRef,
+    createUser: createUser
   };
 }

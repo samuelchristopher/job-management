@@ -1,1 +1,26 @@
-<h1>{{ thing }}</h1>
+<div layout="column" ng-cloak="">
+  <md-content layout-padding="" flex="60">
+    <form name="registerForm" novalidate ng-submit="register()">
+      <md-input-container class="md-block">
+        <label>Email</label>
+        <input required="" type="email" name="userEmail" ng-model="email" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
+        <div ng-messages="registerForm.userEmail.$error" role="alert" ng-show="registerForm.$submitted || registerForm.userEmail.$dirty">
+          <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+            Your email must be between 10 and 100 characters long and look like an e-mail address.
+          </div>
+        </div>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Password</label>
+        <input required="" name="userPassword" type="password" ng-model="password" minlength="6">
+        <div ng-messages="registerForm.userPassword.$error" role="alert" ng-show="registerForm.$submitted || registerForm.userPassword.$dirty">
+          <div ng-message="required">This is required.</div>
+          <div ng-message="minlength">Your password must contain more than 6 characters.</div>
+        </div>
+      </md-input-container>
+
+      <button ng-disabled="registerForm.$valid ? false : true" type="submit" class="md-button md-raised md-primary">{{ registerText }}</button>
+    </form>
+  </md-content>
+</div>

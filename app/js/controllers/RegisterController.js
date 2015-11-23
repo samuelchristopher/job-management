@@ -1,7 +1,15 @@
 angular.module('jobManagement')
-  .controller('RegisterController', ['FiltersService','currentAuth', '$scope', 'Auth', 'FlashService', RegisterController]);
+  .controller('RegisterController', ['$location', 'FiltersService','currentAuth', '$scope', 'Auth', 'FlashService', RegisterController]);
 
-function RegisterController(FiltersService, currentAuth, $scope, Auth, FlashService) {
+function RegisterController($location, FiltersService, currentAuth, $scope, Auth, FlashService) {
   FiltersService.guest(currentAuth);
-  $scope.thing = 'Register Page';
+  $scope.registerText = 'Sign Up';
+  $scope.register = function() {
+    Auth.createUser($scope.email, $scope.password);
+    $scope.registerText = 'Processing...';
+    setTimeout(function() {
+      $scope.registerText = 'Sign Up';
+    }, 500);
+    // $location.path('/');
+  };
 }
