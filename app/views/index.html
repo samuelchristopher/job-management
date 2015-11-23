@@ -9,11 +9,11 @@
   <body layout="column">
     <div ng-include="'templates/partials/toolbar.html'"></div>
     <div layout="row" flex>
-      <div layout="row" ng-include="'templates/partials/nav.html'"></div>
+      <div ng-if="auth" layout="row" ng-include="'templates/partials/nav.html'"></div>
       <div layout="column" flex id="content">
-        <md-content layout="column" flex class="md-padding">
+        <md-content layout="column" flex class="md-padding card-container">
           <md-toast ng-show="flash"><span flex>{{ flash }}</span></md-toast>
-          <md-card>
+          <md-card class="content-card">
             <md-card-content ng-view></md-card-content>
           </md-card>
         </md-content>

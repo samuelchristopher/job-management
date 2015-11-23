@@ -9,7 +9,7 @@ function Auth($firebaseAuth, $rootScope, FlashService, $location) {
       email: email,
       password: password
     }).then(function(authData) {
-      $rootScope.auth = authData;
+      $rootScope.auth = true;
       $location.path('/');
       FlashService.toast('Welcome '+ email + '!', 'CLOSE');
     }).catch(function(err) {
@@ -20,11 +20,21 @@ function Auth($firebaseAuth, $rootScope, FlashService, $location) {
   var logout = function () {
     authObj.$unauth();
     $location.path('/login');
+    $rootScope.auth = false;
     FlashService.toast('See you later!', 'CLOSE');
+  };
+
+  var getAuth = function () {
+    if(authObj.$getAuth()) {
+      return true;
+    } else {
+      return false;
+    }
   };
 
   return {
     login: login,
-    logout: logout
+    logout: logout,
+    getAuth: getAuth
   };
 }

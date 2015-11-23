@@ -1,6 +1,7 @@
 angular.module('jobManagement')
-  .controller('HomeController', ['$scope', '$location', 'Auth', 'FlashService', HomeController]);
+  .controller('HomeController', ['$rootScope', '$scope', '$location', 'Auth', 'FlashService', HomeController]);
 
-function HomeController($scope, $location, Auth, FlashService) {
+function HomeController($rootScope, $scope, $location, Auth, FlashService) {
   $scope.thing = 'It works!';
+  $scope.auth = Auth.getAuth();
 }

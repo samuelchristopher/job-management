@@ -1,4 +1,7 @@
 angular.module('jobManagement')
+  .run(['$rootScope', 'Auth', function($rootScope, Auth) {
+    $rootScope.auth = Auth.getAuth();
+  }])
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
       .when('/', {
