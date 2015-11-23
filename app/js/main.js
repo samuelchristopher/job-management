@@ -3,6 +3,7 @@ var angularRoute    = require('angular-route');
 var angularAnimate  = require('angular-animate');
 var angularMaterial = require('angular-material');
 var angularAria     = require('angular-aria');
+var angularMessages = require('angular-messages')
 var firebase        = require('./src/firebase');
 var angularfire     = require('angularfire');
 var app             = require('./app');
