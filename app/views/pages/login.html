@@ -20,9 +20,7 @@
         </div>
       </md-input-container>
 
-
-      <button ng-show="loginForm.$invalid" ng-disabled="true" type="submit" class="md-button md-raised md-primary">{{ loginText }}</button>
-      <button ng-show="loginForm.$valid" ng-disabled="false" type="submit" class="md-button md-raised md-primary">{{ loginText }}</button>
+      <button ng-disabled="loginForm.$valid ? false : true" type="submit" class="md-button md-raised md-primary">{{ loginText }}</button>
 
     </form>
   </md-content>

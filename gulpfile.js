@@ -9,6 +9,7 @@ var sass       = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var connect    = require('gulp-connect');
 var html       = require('gulp-minify-html');
+var svgo     = require('imagemin-svgo');
 
 var env        = process.env.NODE_ENV || 'development';
 var outputDir = 'build';
@@ -56,11 +57,18 @@ gulp.task('connect', function() {
   });
 });
 
+gulp.task('svgmin', function() {
+  return gulp.src('app/images/**/*.svg')
+        .pipe(svgo()())
+        .pipe(gulp.dest(outputDir + '/images'))
+        .pipe(connect.reload());
+});
+
 gulp.task('watch', function() {
-  // gulp.watch('app/views/**/*', ['jade']);
+  gulp.watch('app/images/**/*', ['svgmin']);
   gulp.watch('app/views/**/*.html', ['html']);
   gulp.watch('app/js/**/*.js', ['js']);
   gulp.watch('app/sass/**/*.sass', ['css']);
 });
 
-gulp.task('default', ['js', 'html', 'css', 'watch', 'connect']);
+gulp.task('default', ['js', 'html', 'css', 'watch', 'connect', 'svgmin']);
