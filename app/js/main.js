@@ -8,6 +8,7 @@ var angularfire     = require('angularfire');
 var app             = require('./app');
 var MainController  = require('./controllers/MainController');
 var HomeController  = require('./controllers/HomeController');
+var LoginController = require('./controllers/LoginController');
 var config          = require('./config');
 var flash           = require('./services/flash');
 var auth            = require('./services/auth');

@@ -5,5 +5,9 @@ angular.module('jobManagement')
         templateUrl: 'pages/home.html',
         controller: 'HomeController'
       })
-      .otherwise({ redirectTo: '/' });
+      .when('/login', {
+        templateUrl: 'pages/login.html',
+        controller: 'LoginController'
+      })
+      .otherwise({ redirectTo: '/login' });
   }]);
