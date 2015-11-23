@@ -9,4 +9,8 @@ function ToolbarController($mdSidenav, $rootScope, $scope, Auth, $location) {
   $scope.toggleSidenav = function(menuId) {
     $mdSidenav(menuId).toggle();
   };
+
+  $scope.updateProfile = function() {
+    $location.path('/profile');
+  }
 }

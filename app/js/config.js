@@ -36,6 +36,15 @@ angular.module('jobManagement')
         return Auth.authRef.$requireAuth();
       }]
     }
+  })
+  .when('/profile', {
+    controller: 'ProfileController',
+    templateUrl: 'pages/profile.html',
+    resolve: {
+      'currentAuth': ['Auth', function(Auth) {
+        return Auth.authRef.$requireAuth();
+      }]
+    }
   });
   $locationProvider.html5Mode({
     enabled: false,
