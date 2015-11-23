@@ -32,9 +32,12 @@ function Auth($firebaseAuth, $rootScope, FlashService, $location) {
     }
   };
 
+  var authRef = $firebaseAuth(ref);
+
   return {
     login: login,
     logout: logout,
-    getAuth: getAuth
+    getAuth: getAuth,
+    authRef: authRef
   };
 }
