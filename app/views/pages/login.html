@@ -3,7 +3,7 @@
     <form name="loginForm" novalidate ng-submit="login()">
       <md-input-container class="md-block">
         <label>Email</label>
-        <input required="" type="email" name="userEmail" ng-model="user.userEmail" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
+        <input required="" type="email" name="userEmail" ng-model="user.email" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
         <div ng-messages="loginForm.userEmail.$error" role="alert" ng-show="loginForm.$submitted || loginForm.userEmail.$dirty">
           <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
             Your email must be between 10 and 100 characters long and look like an e-mail address.
@@ -21,8 +21,8 @@
       </md-input-container>
 
 
-      <button ng-show="loginForm.$invalid" ng-disabled="true" type="submit" class="md-button md-raised md-primary">Log in</button>
-      <button ng-show="loginForm.$valid" ng-disabled="false" type="submit" class="md-button md-raised md-primary">Log in</button>
+      <button ng-show="loginForm.$invalid" ng-disabled="true" type="submit" class="md-button md-raised md-primary">{{ loginText }}</button>
+      <button ng-show="loginForm.$valid" ng-disabled="false" type="submit" class="md-button md-raised md-primary">{{ loginText }}</button>
 
     </form>
   </md-content>

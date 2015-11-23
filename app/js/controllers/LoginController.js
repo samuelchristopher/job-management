@@ -1,8 +1,14 @@
 angular.module('jobManagement')
-  .controller('LoginController', ['$scope', LoginController]);
+  .controller('LoginController', ['$rootScope', '$scope', 'Auth', '$location', 'FlashService', LoginController]);
 
-function LoginController($scope) {
+function LoginController($rootScope, $scope, Auth, $location, FlashService) {
+  $scope.loginText = 'Log In';
+
   $scope.login = function() {
-    console.log("Logging in...");
+    $scope.authData = Auth.login($scope.user.email, $scope.user.password);
+    $scope.loginText = 'Processing...';
+    setTimeout(function() {
+      $scope.loginText = 'Log In';
+    }, 500);
   };
 }

@@ -1,17 +1,19 @@
 angular.module('jobManagement')
-  .factory('AuthService', ['$firebaseAuth', 'FlashService', '$location', AuthService]);
+  .factory('Auth', ['$firebaseAuth', '$rootScope', 'FlashService', '$location', Auth]);
 
-function AuthService($firebaseAuth, FlashService, $location) {
-  var ref = 'https://job-management.firebaseio.com/';
+function Auth($firebaseAuth, $rootScope, FlashService, $location) {
+  var ref = new Firebase('https://job-management.firebaseio.com/');
   var authObj = $firebaseAuth(ref);
   var login = function (email, password) {
     authObj.$authWithPassword({
       email: email,
       password: password
     }).then(function(authData) {
-      return authData;
+      $rootScope.auth = authData;
+      $location.path('/');
+      FlashService.toast('Welcome '+ email + '!', 'CLOSE');
     }).catch(function(err) {
-      FlashService.toast(err, 'OK');
+      FlashService.toast('Could not log you in!', 'TRY AGAIN');
     });
   };
 
