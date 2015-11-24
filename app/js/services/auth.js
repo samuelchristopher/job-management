@@ -55,7 +55,20 @@ function Auth($firebaseAuth, $rootScope, FlashService, $location) {
       FlashService.toast('Your email has been updated!', 'OK');
       login(newEmail, password, '/', true);
     }).catch(function(error) {
-      FlashService.toast('Could not update your email', 'OK');
+      FlashService.toast('Could not update your email.', 'OK');
+    });
+  };
+
+  var changePassword = function(email, oldPassword, newPassword) {
+    authObj.$changePassword({
+      email: email,
+      oldPassword: oldPassword,
+      newPassword: newPassword
+    }).then(function() {
+      FlashService.toast('Your password has been changed!', 'OK');
+      login(email, newPassword);
+    }).catch(function(error) {
+      FlashService.toast('Could not change your password.', 'OK');
     });
   };
 
@@ -66,6 +79,7 @@ function Auth($firebaseAuth, $rootScope, FlashService, $location) {
     getAuth: getAuth,
     authRef: authRef,
     createUser: createUser,
-    updateEmail: updateEmail
+    updateEmail: updateEmail,
+    changePassword: changePassword
   };
 }

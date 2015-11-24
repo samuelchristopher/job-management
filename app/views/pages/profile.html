@@ -39,8 +39,39 @@
       </md-tab>
       <md-tab label="Password">
         <md-content class="md-padding">
-          <h1 class="md-display-2">Password</h1>
-          <p>Passowrd</p>
+          <form name="changePasswordForm" novalidate data-ng-submit="changePassword()">
+            <md-input-container class="md-block">
+              <label>Email</label>
+              <input type="email" required="" compare-to="currentEmail" minlenght="10" maxlength="100" ng-model="email" name="email" ng-pattern="/^.+@.+\..+$/">
+              <div ng-messages="changePasswordForm.email.$error" role="alert" ng-show="changePasswordForm.email.$dirty || changePasswordForm.$submitted">
+                <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                  Your email must be between 10 and 100 characters long and look like an e-mail address.
+                </div>
+                <div ng-message="compareTo">That is not your current email address.</div>
+              </div>
+            </md-input-container>
+
+            <md-input-container class="md-block">
+              <label>Old Password</label>
+              <input required="" name="oldPassword" type="password" ng-model="oldPassword" minlength="6">
+              <div ng-messages="changePasswordForm.oldPassword.$error" role="alert" ng-show="changePasswordForm.$submitted || changePasswordForm.oldPassword.$dirty">
+                <div ng-message="required">This is required.</div>
+                <div ng-message="minlength">Your password must not contain less than 6 characters.</div>
+              </div>
+            </md-input-container>
+
+            <md-input-container class="md-block">
+              <label>New Password</label>
+              <input required="" name="newPassword" type="password" ng-model="newPassword" minlength="6" inverse-compare-to="oldPassword">
+              <div ng-messages="changePasswordForm.newPassword.$error" role="alert" ng-show="changePasswordForm.$submitted || changePasswordForm.newPassword.$dirty">
+                <div ng-message="required">This is required.</div>
+                <div ng-message="minlength">Your password must not contain less than 6 characters.</div>
+                <div ng-message="inverseCompareTo">Your new password cannot be your old password.</div>
+              </div>
+            </md-input-container>
+
+            <button ng-disabled="changePasswordForm.$valid ? false : true" type="submit" class="md-button md-raised md-primary">{{ changePasswordText }}</button>
+          </form>
         </md-content>
       </md-tab>
     </md-tabs>
