@@ -9,7 +9,7 @@
   <body layout="column">
     <div ng-include="'templates/partials/toolbar.html'"></div>
     <div layout="row" flex>
-      <div ng-if="auth" layout="row" ng-include="'templates/partials/nav.html'"></div>
+      <div ng-if="auth" layout="row"  ng-controller="NavigationController" ng-include="'templates/partials/nav.html'"></div>
       <div layout="column" flex id="content">
         <md-content layout="column" flex class="md-padding card-container">
           <md-toast ng-show="flash"><span flex>{{ flash }}</span></md-toast>

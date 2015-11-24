@@ -45,6 +45,15 @@ angular.module('jobManagement')
         return Auth.authRef.$requireAuth();
       }]
     }
+  })
+  .when('/sales', {
+    controller: 'SalesController',
+    templateUrl: 'pages/sales.html',
+    resolve: {
+      'currentAuth': ['Auth', function(Auth) {
+        return Auth.authRef.$requireAuth();
+      }]
+    }
   });
   $locationProvider.html5Mode({
     enabled: false,
