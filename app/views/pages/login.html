@@ -16,7 +16,7 @@
         <input required="" name="userPassword" type="password" ng-model="user.password" minlength="6">
         <div ng-messages="loginForm.userPassword.$error" role="alert" ng-show="loginForm.$submitted || loginForm.userPassword.$dirty">
           <div ng-message="required">This is required.</div>
-          <div ng-message="minlength">Your password must contain more than 6 characters.</div>
+          <div ng-message="minlength">Your password must not contain less than 6 characters.</div>
         </div>
       </md-input-container>
 

@@ -5,7 +5,7 @@ function LoginController(FiltersService, currentAuth, $rootScope, $scope, Auth, 
   $scope.register = '/register';
   $scope.gotoRegister = function() {
     $location.path('/register');
-  }
+  };
 
   FiltersService.guest(currentAuth);
 

@@ -1,13 +1,10 @@
 angular.module('jobManagement')
-  .controller('ProfileController', ['$scope', 'FlashService', ProfileController]);
+  .controller('ProfileController', ['currentAuth', '$scope', 'Auth', ProfileController]);
 
-function ProfileController($scope, FlashService) {
+function ProfileController(currentAuth, $scope, Auth) {
+  $scope.currentEmail = currentAuth.password.email;
   $scope.updateEmailText = 'Update Email';
-  var updateEmail = function() {
-    if ($scope.oldEmail === $scope.newEmail) {
-      FlashService.toast('New email cannot be the same as old email', 'OK');
-      $scope.newEmail = '';
-    }
-
+  $scope.updateEmail = function() {
+    Auth.updateEmail($scope.oldEmail, $scope.newEmail, $scope.emailPassword);
   };
-};
+}

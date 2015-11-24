@@ -18,3 +18,4 @@ var flash              = require('./services/flash');
 var auth               = require('./services/auth');
 var filters            = require('./services/filters');
 var compare            = require('./directives/compare');
+var inverseCompare     = require('./directives/inverseCompare');
