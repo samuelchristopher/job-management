@@ -14,6 +14,7 @@ var ToolbarController    = require('./controllers/ToolbarController');
 var RegisterController   = require('./controllers/RegisterController');
 var ProfileController    = require('./controllers/ProfileController');
 var SalesController      = require('./controllers/SalesController');
+var NewJobController     = require('./controllers/NewJobController');
 var config               = require('./config');
 var flash                = require('./services/flash');
 var auth                 = require('./services/auth');

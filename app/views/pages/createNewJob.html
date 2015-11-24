@@ -1,0 +1,41 @@
+<md-bottom-sheet class="md-list md-has-header" ng-cloak>
+  <md-subheader>{{ header }}</md-subheader>
+  <div class="bottomSheetContent">
+    <form name="newJobForm" novalidate="" ng-submit="createNewJob()">
+      <div layout="row" layout-sm="column" layout-wrap >
+        <md-input-container flex-gt-sm="30" flex>
+          <label>Name</label>
+          <input name="name" type="text" ng-model="name" required="">
+          <div ng-messages="newJobForm.name.$error" ng-show="newJobForm.$submitted || newJobForm.name.$dirty">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+        <md-input-container flex-gt-sm="40" flex>
+          <label>Customer Name</label>
+          <input name="customerName" type="text" ng-model="customerName" required="">
+          <div ng-messages="newJobForm.customerName.$error" ng-show="newJobForm.$submitted || newJobForm.customerName.$dirty">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+        <md-input-container flex>
+          <label>Entered by (Disabled)</label>
+          <input ng-model="createdBy" disabled>
+        </md-input-container>
+      </div>
+      <div layout="row" layout-sm="column">
+        <md-input-container class="md-block" flex-gt-sm="70" flex>
+          <label>Job Description</label>
+          <textarea ng-model="desc" columns="1" md-maxlength="150" rows="2"></textarea>
+          <div ng-messages="newJobForm.desc.$error" ng-show="newJobForm.$submitted || newJobForm.desc.$dirty">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+       <md-datepicker required="" ng-model="dueDate" md-placeholder="Due date" flex name="dueDate">
+       </md-datepicker>
+      </div>
+      <button ng-disabled="newJobForm.$invalid ? true : false" type="submit" class="md-button md-raised md-primary" flex>{{ newJobText }}</button>
+    </form>
+  </div>
+
+
+</md-bottom-sheet>

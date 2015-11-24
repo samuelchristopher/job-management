@@ -1,7 +1,7 @@
 angular.module('jobManagement')
-  .factory('Auth', ['$firebaseAuth', '$rootScope', 'FlashService', '$location', Auth]);
+  .factory('Auth', ['$window', '$firebaseAuth', '$rootScope', 'FlashService', '$location', Auth]);
 
-function Auth($firebaseAuth, $rootScope, FlashService, $location) {
+function Auth($window, $firebaseAuth, $rootScope, FlashService, $location) {
   var ref = new Firebase('https://job-management.firebaseio.com/');
   var authObj = $firebaseAuth(ref);
   var login = function (email, password, path, showMessage) {
@@ -72,10 +72,16 @@ function Auth($firebaseAuth, $rootScope, FlashService, $location) {
     });
   };
 
+  var getUser = function() {
+    var user = JSON.parse($window.localStorage.getItem('firebase:session::job-management'));
+    return user;
+  }
+
 
   return {
     login: login,
     logout: logout,
+    getUser: getUser,
     getAuth: getAuth,
     authRef: authRef,
     createUser: createUser,

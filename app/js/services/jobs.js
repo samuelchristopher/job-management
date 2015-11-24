@@ -8,6 +8,10 @@ function JobsService($firebaseArray) {
     return jobs;
   };
 
+  var addJob = function(name, customerName, desc) {
+
+  };
+
   return {
     getJobs: getJobs
   };
