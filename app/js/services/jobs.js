@@ -9,6 +9,11 @@ function JobsService($firebaseArray, $firebaseObject) {
     return jobs;
   };
 
+  var getJobsObject = function() {
+    var jobsObject = $firebaseObject(ref);
+    return jobsObject;
+  };
+
   var addJob = function(name, customerName, createdBy, desc, dueDate) {
     var newJob = {
       name: name,
@@ -52,6 +57,7 @@ function JobsService($firebaseArray, $firebaseObject) {
 
   return {
     getJobs: getJobs,
+    getJobsObject: getJobsObject,
     addJob: addJob,
     getJobObject: getJobObject,
     jobComment: jobComment,

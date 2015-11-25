@@ -3,6 +3,7 @@ angular.module('jobManagement')
 
 function viewJobController(FlashService, $mdDialog, JobsService, id, $scope) {
   var job = JobsService.getJobObject(id);
+  $scope.viewJobText = 'Save';
   job.$loaded().then(function() {
       $scope.label = job.name;
       $scope.job = job;
@@ -13,12 +14,14 @@ function viewJobController(FlashService, $mdDialog, JobsService, id, $scope) {
 
   $scope.saveComment = function() {
     JobsService.jobComment($scope.job.comment, job.$id);
-    FlashService.toast('Comment has been saved.', 'OK');
+    $scope.viewJobText = 'Saved!';
+    $mdDialog.hide();
+    // FlashService.toast('Comment has been saved.', 'OK');
   };
 
   $scope.jobCompleted = function() {
     JobsService.completed(id);
-    FlashService.toast('Job has been completed.', 'OK');
+    // FlashService.toast('Job has been completed.', 'OK');
     $mdDialog.hide();
   };
 }

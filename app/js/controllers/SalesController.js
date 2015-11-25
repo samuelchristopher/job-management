@@ -1,9 +1,19 @@
 angular.module('jobManagement')
-  .controller('SalesController', ['$mdDialog', '$scope', 'JobsService', '$mdBottomSheet', SalesController]);
+  .controller('SalesController', ['FlashService', '$mdDialog', '$scope', 'JobsService', '$mdBottomSheet', SalesController]);
 
-function SalesController($mdDialog, $scope, JobsService, $mdBottomSheet) {
+function SalesController(FlashService, $mdDialog, $scope, JobsService, $mdBottomSheet) {
   $scope.message = 'Sales page';
   $scope.jobs = JobsService.getJobs();
+  var jobs = JobsService.getJobs();
+  jobs.$watch(function(e) {
+    if(e.event == 'child_changed') {
+      var job = JobsService.getJobObject(e.key);
+      job.$loaded().then(function() {
+        FlashService.toast(job.name + ' was updated.', 'OK');
+      });
+    }
+  });
+
   $scope.openCreateJob = function (e) {
     $mdBottomSheet.show({
       templateUrl: 'pages/createNewJob.html',
