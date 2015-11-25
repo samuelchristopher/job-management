@@ -1,8 +1,9 @@
 angular.module('jobManagement')
-  .factory('JobsService', ['$firebaseArray', JobsService]);
+  .factory('JobsService', ['$firebaseArray', '$firebaseObject', JobsService]);
 
-function JobsService($firebaseArray) {
+function JobsService($firebaseArray, $firebaseObject) {
   var ref = new Firebase('https://job-management.firebaseio.com/jobs');
+  var refURL = 'https://job-management.firebaseio.com/jobs/';
   var jobs = $firebaseArray(ref);
   var getJobs = function() {
     return jobs;
@@ -14,13 +15,36 @@ function JobsService($firebaseArray) {
       customerName: customerName,
       createdBy: createdBy,
       desc: desc,
-      dueDate: new Date(String(dueDate)).getTime() / 1000
+      dueDate: new Date(String(dueDate)).getTime() / 1000,
+      comment: ''
     };
     jobs.$add(newJob);
   };
 
+  var getJobObject = function(id) {
+    var jobRefURL = refURL + id;
+    var job = $firebaseObject(new Firebase(jobRefURL));
+    return job;
+  };
+
+  var getJobArray = function(id) {
+    var jobRefURL = refURL + id;
+    var job = $firebaseArray(new Firebase(jobRefURL));
+    return job;
+  }
+
+  var jobComment = function(comment, id) {
+    var job = getJobObject(id);
+    job.$loaded().then(function() {
+      job.comment = comment;
+      job.$save();
+    });
+  };
+
   return {
     getJobs: getJobs,
-    addJob: addJob
+    addJob: addJob,
+    getJobObject: getJobObject,
+    jobComment: jobComment
   };
 }
