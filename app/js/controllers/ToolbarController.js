@@ -12,5 +12,9 @@ function ToolbarController($mdSidenav, $rootScope, $scope, Auth, $location) {
 
   $scope.updateProfile = function() {
     $location.path('/profile');
-  }
+  };
+
+  $scope.goHome = function() {
+    $location.path('/');
+  };
 }
