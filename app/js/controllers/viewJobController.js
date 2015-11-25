@@ -19,5 +19,6 @@ function viewJobController(FlashService, $mdDialog, JobsService, id, $scope) {
   $scope.jobCompleted = function() {
     JobsService.completed(id);
     FlashService.toast('Job has been completed.', 'OK');
+    $mdDialog.hide();
   };
 }

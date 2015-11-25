@@ -15,13 +15,13 @@
 
 <md-list layout-padding>
   <md-subheader class="md-primary">Pending jobs</md-subheader>
-  <md-list-item class="md-3-line job--list-item" ng-repeat="job in jobs">
-    <div class="md-list-item-text" layout="column">
+  <md-list-item class="md-3-line job--list-item" ng-repeat="job in jobs" ng-hide="job.completed">
+    <div class="md-list-item-text" layout="column" >
       <h3 class="job--name">{{ job.name }}</h3>
       <h4>{{ job.customerName }}</h4>
       <p>{{ job.createdBy }}</p>
       <!-- <md-button class="md-secondary" ng-click="detail(job.$id)">Edit</md-button> -->
-      <md-button class="md-secondary md-primary md-raised" ng-click="viewJob($event, job.$id)" >
+      <md-button ng-disabled="job.completed ? true : false" class="md-secondary md-primary md-raised" ng-click="viewJob($event, job.$id)" >
         Edit
       </md-button>
       <md-divider ng-if="!$last"></md-divider>
