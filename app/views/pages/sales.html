@@ -18,9 +18,12 @@
   <md-list-item class="md-3-line" ng-repeat="job in jobs">
     <div class="md-list-item-text" layout="column">
       <h3 class="job--name">{{ job.name }}</h3>
+      <h5 style="margin: 0"><em>{{ job.customerName }}</em></h5>
+      </p>
       <h4>{{ job.desc }}</h4>
       <p>{{ job.createdBy }}</p>
     </div>
+    <md-divider></md-divider>
   </md-list-item>
 </md-list>
 
