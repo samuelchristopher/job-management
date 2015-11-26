@@ -1,7 +1,7 @@
 angular.module('jobManagement')
-  .controller('SalesController', ['FlashService', '$mdDialog', '$scope', 'JobsService', '$mdBottomSheet', SalesController]);
+  .controller('SalesController', ['$mdToast', 'FlashService', '$mdDialog', '$scope', 'JobsService', '$mdBottomSheet', SalesController]);
 
-function SalesController(FlashService, $mdDialog, $scope, JobsService, $mdBottomSheet) {
+function SalesController($mdToast, FlashService, $mdDialog, $scope, JobsService, $mdBottomSheet) {
   $scope.message = 'Sales page';
   $scope.jobs = JobsService.getJobs();
   var jobs = JobsService.getJobs();

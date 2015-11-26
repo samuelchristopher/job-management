@@ -16,12 +16,12 @@ function viewJobController(FlashService, $mdDialog, JobsService, id, $scope) {
     JobsService.jobComment($scope.job.comment, job.$id);
     $scope.viewJobText = 'Saved!';
     $mdDialog.hide();
-    // FlashService.toast('Comment has been saved.', 'OK');
+    FlashService.toast('Comment has been saved.', 'OK');
   };
 
   $scope.jobCompleted = function() {
     JobsService.completed(id);
-    // FlashService.toast('Job has been completed.', 'OK');
+    FlashService.toast('Job has been completed.', 'OK');
     $mdDialog.hide();
   };
 }

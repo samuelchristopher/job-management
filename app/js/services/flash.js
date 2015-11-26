@@ -15,7 +15,10 @@ function FlashService($rootScope, $mdToast) {
             .action(action)
             .highlightAction(false)
             .position('bottom left');
-      $mdToast.show(toast);
+      setTimeout(function() {
+        $mdToast.show(toast);
+      }, 99);
+
     },
   };
 }
