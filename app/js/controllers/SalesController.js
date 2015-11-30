@@ -3,7 +3,11 @@ angular.module('jobManagement')
 
 function SalesController($mdToast, FlashService, $mdDialog, $scope, JobsService, $mdBottomSheet) {
   $scope.message = 'Sales page';
+  $scope.jobsLoaded = false;
   $scope.jobs = JobsService.getJobs();
+  $scope.jobs.$loaded().then(function() {
+    $scope.jobsLoaded = true;
+  })
   var jobs = JobsService.getJobs();
   jobs.$watch(function(e) {
     if(e.event == 'child_changed') {
