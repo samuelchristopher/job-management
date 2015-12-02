@@ -26,7 +26,8 @@ function JobsService($location, $firebaseArray, $firebaseObject) {
       date: new Date().getTime(),
       comment: '',
       completed: false,
-      custom_id: newId
+      custom_id: newId,
+      updated: false
     };
     jobs.$add(newJob).then(function(ref) {
       var id = ref.key();
@@ -62,12 +63,21 @@ function JobsService($location, $firebaseArray, $firebaseObject) {
     });
   };
 
+  var jobUpdatedFalse = function(id) {
+    var job = getJobObject(id);
+    job.$loaded().then(function() {
+      job.updated = false;
+      job.$save();
+    });
+  };
+
   return {
     getJobs: getJobs,
     getJobsObject: getJobsObject,
     addJob: addJob,
     getJobObject: getJobObject,
     jobComment: jobComment,
-    completed: completed
+    completed: completed,
+    jobUpdatedFalse: jobUpdatedFalse
   };
 }

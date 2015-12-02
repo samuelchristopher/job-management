@@ -24,7 +24,12 @@
   </div>
   <md-list-item class="md-3-line job--list-item" ng-repeat="job in jobs | filter:searchText" ng-hide="job.completed">
     <div class="md-list-item-text" layout="column" >
-      <h3 class="job--name">{{ job.name }}</h3>
+      <h3 class="job--name">
+        {{ job.name }}
+        <span ng-show="{{ job.updated }}" class="job--updated">
+          <md-icon md-svg-icon="images/icons/updated.svg" aria-label="Updated" style="color: #FFF"></md-icon>
+        </span>
+      </h3>
       <h4>{{ job.customer.name }}</h4>
       <p>{{ job.createdBy }}</p>
       <!-- <md-button class="md-secondary" ng-click="detail(job.$id)">Edit</md-button> -->

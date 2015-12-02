@@ -8,6 +8,7 @@ function viewJobController($location, FlashService, $mdDialog, JobsService, id, 
       $scope.label = job.name;
       $scope.job = job;
       $scope.jobDate = new Date(job.date).toDateString();
+      JobsService.jobUpdatedFalse(id);
    });
   $scope.closeDialog = function() {
     $mdDialog.hide();
