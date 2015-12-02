@@ -15,21 +15,24 @@
         <div class="md-dialog-content">
           <h3>Customer: {{ job.customer.name }}</h3>
           <p>Description: {{ job.desc }}</p>
+          <p>Comment: {{ job.comment || 'No comment' }}</p>
+          <p>Date: {{ jobDate }}</p>
+          <p>Belongings: <div ng-repeat="thing in job.belongings">{{ thing }}</div></p>
 
-          <md-input-container>
+          <!-- <md-input-container>
             <label>Comment</label>
             <input name="comment" type="text" ng-model="job.comment" required="">
             <div ng-messages="viewJobForm.comment.$error" ng-show="viewJobForm.$submitted || viewJobForm.comment.$dirty">
               <div ng-message="required">This is required.</div>
             </div>
           </md-input-container>
-          <button class="md-button md-primary md-raised" ng-disabled="viewJobForm.$invalid ? true : false" type="submit">{{ viewJobText }}</button>
+          <button class="md-button md-primary md-raised" ng-disabled="viewJobForm.$invalid ? true : false" type="submit">{{ viewJobText }}</button> -->
 
         </div>
       </md-dialog-content>
     </form>
   <!-- </form> -->
-    <md-dialog-actions layout="row">
+    <!-- <md-dialog-actions layout="row">
       <span flex></span>
       <md-button ng-click="jobCompleted()" ng-disabled="job.completed ? true : false" style="margin-right:20px;">
         Job completed
@@ -37,5 +40,5 @@
       <!-- <md-checkbox ng-model="data.cb1" aria-label="Checkbox 1">
         Completed
       </md-checkbox> -->
-    </md-dialog-actions>
+    <!-- </md-dialog-actions> -->
 </md-dialog>
