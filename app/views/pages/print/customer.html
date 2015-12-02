@@ -1,0 +1,19 @@
+<h2>Invoice preview:</h2>
+<div class="preview" print-section>
+  <p>Customer name: {{ customer.name }}</p>
+  <p>Customer Address: {{ customer.address }}</p>
+  <p>Customer contact: {{ customer.contact1 }} <span ng-if="customer.contact2">{{ customer.contact2 }}</span></p>
+  <p ng-if="customer.companyName">Customer Company name: {{ customer.companyName }}</p>
+  <p ng-if="customer.email">Customer email: {{ customer.email }}</p>
+  <!-- <br> -->
+  <p>Job name: {{ job.name }}</p>
+  <p>Job description: {{ job.desc }}</p>
+  <p>Belongings: <span ng-repeat="thing in job.belongings">{{ thing }}</span></p>
+  <br>
+
+  <p>Signature</p>
+  <p>______________</p>
+  <p>{{ customer.name }}</p>
+</div>
+<!-- paper size envelope b6 -->
+<md-button class="md-raised md-primary" print-btn>Print</md-button>

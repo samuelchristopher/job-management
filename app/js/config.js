@@ -63,6 +63,15 @@ angular.module('jobManagement')
         return Auth.authRef.$requireAuth();
       }]
     }
+  })
+  .when('/print/customer/:id', {
+    controller: 'CustomerController',
+    templateUrl: 'pages/print/customer.html',
+    resolve: {
+      'currentAuth': ['Auth', function(Auth) {
+        return Auth.authRef.$requireAuth();
+      }]
+    }
   });
   $locationProvider.html5Mode({
     enabled: false,
