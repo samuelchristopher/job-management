@@ -15,6 +15,8 @@ function JobsService($firebaseArray, $firebaseObject) {
   };
 
   var addJob = function(name, createdBy, desc, customer, tags) {
+    var currentLength = jobs.length;
+    var newId = currentLength + 1;
     var newJob = {
       name: name,
       belongings: tags,
@@ -23,7 +25,8 @@ function JobsService($firebaseArray, $firebaseObject) {
       desc: desc,
       date: new Date().getTime(),
       comment: '',
-      completed: false
+      completed: false,
+      custom_id: newId
     };
     jobs.$add(newJob);
   };
