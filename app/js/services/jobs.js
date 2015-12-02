@@ -14,13 +14,13 @@ function JobsService($firebaseArray, $firebaseObject) {
     return jobsObject;
   };
 
-  var addJob = function(name, customerName, createdBy, desc, dueDate) {
+  var addJob = function(name, createdBy, desc, customer) {
     var newJob = {
       name: name,
-      customerName: customerName,
+      customer: customer,
       createdBy: createdBy,
       desc: desc,
-      dueDate: new Date(String(dueDate)).getTime() / 1000,
+      date: new Date().getTime(),
       comment: '',
       completed: false
     };

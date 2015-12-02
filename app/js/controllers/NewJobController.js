@@ -7,7 +7,7 @@ function NewJobController($mdBottomSheet, FlashService, $location, $scope, Auth,
   $scope.createdBy = user.password.email;
   $scope.newJobText = 'Create New Job';
   $scope.createNewJob = function() {
-    JobsService.addJob($scope.name, $scope.customerName, $scope.createdBy, $scope.desc, $scope.dueDate);
+    JobsService.addJob($scope.name, $scope.createdBy, $scope.desc, $scope.customer);
     $mdBottomSheet.hide();
     setTimeout(function() {
       FlashService.toast('Added ' + $scope.name + '!', 'OK');
