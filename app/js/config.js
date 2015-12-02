@@ -72,6 +72,15 @@ angular.module('jobManagement')
         return Auth.authRef.$requireAuth();
       }]
     }
+  })
+  .when('/print/:id', {
+    controller: 'PrintController',
+    templateUrl: 'pages/print/print.html',
+    resolve: {
+      'currentAuth': ['Auth', function(Auth) {
+        return Auth.authRef.$requireAuth();
+      }]
+    }
   });
   $locationProvider.html5Mode({
     enabled: false,

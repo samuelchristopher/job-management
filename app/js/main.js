@@ -18,6 +18,7 @@ var NewJobController     = require('./controllers/NewJobController');
 var viewJobController    = require('./controllers/viewJobController');
 var LabelController      = require('./controllers/print/LabelController');
 var CustomerController   = require('./controllers/print/CustomerController');
+var PrintController      = require('./controllers/print/PrintController');
 var config               = require('./config');
 var flash                = require('./services/flash');
 var auth                 = require('./services/auth');

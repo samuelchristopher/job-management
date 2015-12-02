@@ -30,7 +30,7 @@ function JobsService($location, $firebaseArray, $firebaseObject) {
     };
     jobs.$add(newJob).then(function(ref) {
       var id = ref.key();
-      $location.path('/print/label/' + id);
+      $location.path('/print/' + id);
     });
   };
 
