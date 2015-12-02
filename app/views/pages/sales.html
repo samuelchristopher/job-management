@@ -28,6 +28,9 @@
       <h4>{{ job.customer.name }}</h4>
       <p>{{ job.createdBy }}</p>
       <!-- <md-button class="md-secondary" ng-click="detail(job.$id)">Edit</md-button> -->
+      <md-button class="salesBtn printBtn md-secondary md-primary md-raised" ng-click="print(job.$id)" >
+        Print
+      </md-button>
       <md-button ng-disabled="job.completed ? true : false" class="salesBtn md-secondary md-primary md-raised" ng-click="viewJob($event, job.$id)" >
         View
       </md-button>

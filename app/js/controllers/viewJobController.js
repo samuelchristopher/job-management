@@ -1,7 +1,7 @@
 angular.module('jobManagement')
-  .controller('viewJobController', ['FlashService', '$mdDialog', 'JobsService', 'id', '$scope', viewJobController]);
+  .controller('viewJobController', ['$location', 'FlashService', '$mdDialog', 'JobsService', 'id', '$scope', viewJobController]);
 
-function viewJobController(FlashService, $mdDialog, JobsService, id, $scope) {
+function viewJobController($location, FlashService, $mdDialog, JobsService, id, $scope) {
   var job = JobsService.getJobObject(id);
   $scope.viewJobText = 'Save';
   job.$loaded().then(function() {
@@ -24,5 +24,10 @@ function viewJobController(FlashService, $mdDialog, JobsService, id, $scope) {
     JobsService.completed(id);
     FlashService.toast('Job has been completed.', 'OK');
     $mdDialog.hide();
+  };
+
+  $scope.printJob = function(id) {
+    $mdDialog.hide();
+    $location.path('/print/' + id);
   };
 }

@@ -1,7 +1,7 @@
 angular.module('jobManagement')
-  .controller('SalesController', ['$mdToast', 'FlashService', '$mdDialog', '$scope', 'JobsService', '$mdBottomSheet', SalesController]);
+  .controller('SalesController', ['$location', '$mdToast', 'FlashService', '$mdDialog', '$scope', 'JobsService', '$mdBottomSheet', SalesController]);
 
-function SalesController($mdToast, FlashService, $mdDialog, $scope, JobsService, $mdBottomSheet) {
+function SalesController($location, $mdToast, FlashService, $mdDialog, $scope, JobsService, $mdBottomSheet) {
   $scope.message = 'Sales page';
   $scope.jobsLoaded = false;
   $scope.jobs = JobsService.getJobs();
@@ -38,6 +38,10 @@ function SalesController($mdToast, FlashService, $mdDialog, $scope, JobsService,
        id: id
      }
    });
+ };
+
+ $scope.print = function (id) {
+   $location.path('/print/' + id);
  };
 
 }
