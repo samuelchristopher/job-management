@@ -1,1 +1,1 @@
-angular.module('jobManagement', ['ngMaterial', 'ngRoute', 'firebase', 'ngMessages']);
+angular.module('jobManagement', ['ngMaterial', 'ngRoute', 'firebase', 'ngMessages', 'AngularPrint']);

@@ -1,0 +1,9 @@
+<h2>Label preview:</h2>
+<div class="preview">
+  <div class="label" print-section>
+    <p>Job order no: {{ job.custom_id }}</p>
+    <p>Customer Name: {{ job.customer.name }}</p>
+    <p>Job date: {{ jobDate }}</p>
+  </div>
+</div>
+<md-button class="md-raised md-primary" print-btn>Print label</md-button>

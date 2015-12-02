@@ -1,7 +1,7 @@
 angular.module('jobManagement')
-  .factory('JobsService', [ '$firebaseArray', '$firebaseObject', JobsService]);
+  .factory('JobsService', ['$location', '$firebaseArray', '$firebaseObject', JobsService]);
 
-function JobsService($firebaseArray, $firebaseObject) {
+function JobsService($location, $firebaseArray, $firebaseObject) {
   var ref = new Firebase('https://job-management.firebaseio.com/jobs');
   var refURL = 'https://job-management.firebaseio.com/jobs/';
   var jobs = $firebaseArray(ref);
@@ -28,7 +28,10 @@ function JobsService($firebaseArray, $firebaseObject) {
       completed: false,
       custom_id: newId
     };
-    jobs.$add(newJob);
+    jobs.$add(newJob).then(function(ref) {
+      var id = ref.key();
+      $location.path('/print/label/' + id);
+    });
   };
 
   var getJobObject = function(id) {
