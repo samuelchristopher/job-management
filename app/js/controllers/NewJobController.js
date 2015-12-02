@@ -1,13 +1,14 @@
 angular.module('jobManagement')
-  .controller('NewJobController', ['$mdBottomSheet', 'FlashService', '$location', '$scope', 'Auth', 'JobsService', NewJobController]);
+  .controller('NewJobController', ['$mdConstant', '$mdBottomSheet', 'FlashService', '$location', '$scope', 'Auth', 'JobsService', NewJobController]);
 
-function NewJobController($mdBottomSheet, FlashService, $location, $scope, Auth, JobsService) {
+function NewJobController($mdConstant, $mdBottomSheet, FlashService, $location, $scope, Auth, JobsService) {
   $scope.header = 'New Job';
   var user = Auth.getUser();
   $scope.createdBy = user.password.email;
   $scope.newJobText = 'Create New Job';
+  $scope.tags = [];
   $scope.createNewJob = function() {
-    JobsService.addJob($scope.name, $scope.createdBy, $scope.desc, $scope.customer);
+    JobsService.addJob($scope.name, $scope.createdBy, $scope.desc, $scope.customer, $scope.tags);
     $mdBottomSheet.hide();
     setTimeout(function() {
       FlashService.toast('Added ' + $scope.name + '!', 'OK');

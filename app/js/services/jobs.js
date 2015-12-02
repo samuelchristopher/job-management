@@ -14,9 +14,10 @@ function JobsService($firebaseArray, $firebaseObject) {
     return jobsObject;
   };
 
-  var addJob = function(name, createdBy, desc, customer) {
+  var addJob = function(name, createdBy, desc, customer, tags) {
     var newJob = {
       name: name,
+      belongings: tags,
       customer: customer,
       createdBy: createdBy,
       desc: desc,
