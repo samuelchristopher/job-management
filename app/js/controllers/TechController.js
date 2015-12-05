@@ -1,7 +1,11 @@
 angular.module('jobManagement')
-  .controller('TechController', ['$location', 'JobsService', '$scope', TechController]);
+  .controller('TechController', ['FiltersService', 'currentAuth', '$location', 'JobsService', '$scope', TechController]);
 
-function TechController($location, JobsService, $scope) {
+function TechController(FiltersService, currentAuth, $location, JobsService, $scope) {
+  var isTechnician = FiltersService.technician(currentAuth);
+  if (isTechnician === false) {
+    $location.path('/');
+  }
   var jobs = JobsService.getJobs();
   jobs.$loaded().then(function() {
     angular.forEach(jobs, function(job) {

@@ -8,7 +8,27 @@ function Filters($location) {
     }
   };
 
+  var technician = function(currentAuth) {
+    var isTechnician;
+    var technicians = [
+      'thesamchris@gmail.com',
+      'tech@one.com',
+      'tech@two.com'
+    ];
+    for(var i =0; i < technicians.length; i++) {
+      if(currentAuth.password.email === technicians[i]) {
+        isTechnician = true;
+      }
+    }
+    if(!isTechnician) {
+      return false;
+    } else {
+      return isTechnician;
+    }
+  };
+
   return {
-    guest: guest
+    guest: guest,
+    technician: technician
   };
 }
