@@ -12,9 +12,9 @@
         </h3>
         <h4>{{ job.date }}</h4>
         <p>{{ job.createdBy }}</p>
-        <!-- <md-button ng-disabled="job.completed ? true : false" class="salesBtn md-secondary md-primary md-raised" ng-click="viewJob($event, job.$id)" >
-          View
-        </md-button> -->
+        <md-button ng-disabled="job.completed ? true : false" class="salesBtn md-secondary md-primary md-raised" ng-click="editJob(job.$id)" >
+          Edit
+        </md-button>
         <md-divider ng-if="!$last"></md-divider>
       </div>
     </md-list-item>

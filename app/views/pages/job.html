@@ -1,0 +1,33 @@
+<div layout="row" layout-sm="column" layout-align="space-around">
+  <md-progress-circular md-mode="indeterminate" ng-hide="jobLoaded" md-diameter="70"></md-progress-circular>
+</div>
+<div ng-show="jobLoaded">
+  <h1>Order no: {{ job.custom_id }}</h1>
+  <p>Description: {{ job.desc }}</p>
+  <p>
+    Customer name: {{ customer.name }}
+  </p>
+  <div>
+    <form name="jobForm" novalidate="" ng-submit="saveJob()" layout-gt-sm="row" layout="column">
+      <md-input-container flex-gt-sm="30" flex>
+        <label>Quote amount</label>
+        <input type="number" ng-model="job.quoteAmount" required="" name="amount">
+        <div ng-messages="jobForm.amount.$error" ng-show="jobForm.$sumitted || jobForm.amount.$dirty">
+          <div ng-message="required">This is required.</div>
+          <div ng-message="type">Amount entered must be a number.</div>
+        </div>
+      </md-input-container>
+      <md-input-container flex-gt-sm="30" flex>
+        <label>Comment</label>
+        <input type="text" ng-model="job.comment" required="" name="comment">
+        <div ng-messages="jobForm.comment.$error" ng-show="jobForm.$submitted || jobForm.comment.$dirty">
+          <div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
+      <md-checkbox ng-model="job.completed" aria-label="Job Completed">
+          Job completed
+        </md-checkbox>
+      <button type="submit" class="md-button md-primary md-raised">Save</button>
+    </form>
+  </div>
+</div>

@@ -16,6 +16,7 @@ var ProfileController    = require('./controllers/ProfileController');
 var SalesController      = require('./controllers/SalesController');
 var NewJobController     = require('./controllers/NewJobController');
 var viewJobController    = require('./controllers/viewJobController');
+var JobController        = require('./controllers/JobController');
 var TechController       = require('./controllers/TechController');
 var LabelController      = require('./controllers/print/LabelController');
 var CustomerController   = require('./controllers/print/CustomerController');

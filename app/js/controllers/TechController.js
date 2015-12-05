@@ -1,7 +1,7 @@
 angular.module('jobManagement')
-  .controller('TechController', ['JobsService', '$scope', TechController]);
+  .controller('TechController', ['$location', 'JobsService', '$scope', TechController]);
 
-function TechController(JobsService, $scope) {
+function TechController($location, JobsService, $scope) {
   var jobs = JobsService.getJobs();
   jobs.$loaded().then(function() {
     angular.forEach(jobs, function(job) {
@@ -9,4 +9,8 @@ function TechController(JobsService, $scope) {
     });
     $scope.jobs = jobs;
   });
+
+  $scope.editJob = function(id) {
+    $location.path('/job/' + id);
+  };
 }

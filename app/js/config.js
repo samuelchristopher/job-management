@@ -90,6 +90,15 @@ angular.module('jobManagement')
         return Auth.authRef.$requireAuth();
       }]
     }
+  })
+  .when('/job/:id', {
+    controller: 'JobController',
+    templateUrl: 'pages/job.html',
+    resolve: {
+      'currentAuth': ['Auth', function (Auth) {
+        return Auth.authRef.$requireAuth();
+      }]
+    }
   });
   $locationProvider.html5Mode({
     enabled: false,
