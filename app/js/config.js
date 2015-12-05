@@ -55,6 +55,15 @@ angular.module('jobManagement')
       }]
     }
   })
+  .when('/technician', {
+    controller: 'TechController',
+    templateUrl: 'pages/technician.html',
+    resolve: {
+      'currentAuth': ['Auth', function(Auth) {
+        return Auth.authRef.$requireAuth();
+      }]
+    }
+  })
   .when('/print/label/:id', {
     controller: 'LabelController',
     templateUrl: 'pages/print/label.html',

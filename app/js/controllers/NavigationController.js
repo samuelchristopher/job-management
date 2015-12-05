@@ -9,4 +9,8 @@ function MainController($location, $mdSidenav, $scope) {
   $scope.gotoSales = function() {
     $location.path('/sales');
   };
+
+  $scope.gotoTech = function() {
+    $location.path('/technician');
+  };
 }
