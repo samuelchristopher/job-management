@@ -1,9 +1,14 @@
 angular.module('jobManagement')
-  .controller('TechSummaryController', ['currentAuth', '$location', 'FiltersService', '$scope', TechSummaryController]);
+  .controller('TechSummaryController', ['JobsService', 'currentAuth', '$location', 'FiltersService', '$scope', TechSummaryController]);
 
-function TechSummaryController(currentAuth, $location, FiltersService, $scope) {
+function TechSummaryController(JobsService, currentAuth, $location, FiltersService, $scope) {
   if (!(FiltersService.admin(currentAuth))) {
-    $location.path('/');
+    return $location.path('/');
   }
-  $scope.foo = 'foo bar baz';
+  $scope.doneLoading = false;
+  var jobs = JobsService.getJobs();
+  jobs.$loaded().then(function() {
+    $scope.jobs = jobs;
+    $scope.doneLoading = true;
+  })
 }
