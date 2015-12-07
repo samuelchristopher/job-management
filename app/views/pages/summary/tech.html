@@ -3,7 +3,14 @@
 </div>
 <md-button class="md-primary md-raised" print-btn ng-if="doneLoading">Print summary</md-button>
 <md-content layout-padding ng-if="doneLoading" print-section>
-  <h1>Technician summary</h1>
+  <md-input-container layout-gt-sm="column" flex-gt-sm="50" flex print-hide>
+    <label>Choose Technician</label>
+    <md-select ng-model="technician">
+      <md-option value="thesamchris@gmail.com">thesamchris@gmail.com</md-option>
+      <md-option value="tech@one.com">tech@one.com</md-option>
+    </md-select>
+  </md-input-container>
+  <h1>Technician summary <span ng-if="technician">for {{ technician }}</span></h1>
   <table class="table table-hover">
     <thead>
       <tr>
@@ -19,7 +26,7 @@
     </thead>
 
     <tbody>
-      <tr ng-repeat="job in jobs">
+      <tr ng-repeat="job in jobs | filter: technician">
         <th scope="row">{{ job.custom_id }}</th>
         <td>{{ job.name }}</td>
         <td>{{ job.customer.name }}</td>
