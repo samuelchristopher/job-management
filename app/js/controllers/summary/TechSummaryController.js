@@ -1,6 +1,9 @@
 angular.module('jobManagement')
-  .controller('TechSummaryController', ['$scope', TechSummaryController]);
+  .controller('TechSummaryController', ['currentAuth', '$location', 'FiltersService', '$scope', TechSummaryController]);
 
-function TechSummaryController($scope) {
+function TechSummaryController(currentAuth, $location, FiltersService, $scope) {
+  if (!(FiltersService.admin(currentAuth))) {
+    $location.path('/');
+  }
   $scope.foo = 'foo bar baz';
 }
