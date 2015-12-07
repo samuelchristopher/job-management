@@ -2,7 +2,7 @@ angular.module('jobManagement')
   .controller('SalesController', ['currentAuth', 'FiltersService', '$location', '$mdToast', 'FlashService', '$mdDialog', '$scope', 'JobsService', '$mdBottomSheet', SalesController]);
 
 function SalesController(currentAuth, FiltersService, $location, $mdToast, FlashService, $mdDialog, $scope, JobsService, $mdBottomSheet) {
-  if (FiltersService.technician(currentAuth)) {
+  if (!(FiltersService.sales(currentAuth) || FiltersService.admin(currentAuth))) {
     return $location.path('/');
   }
   $scope.message = 'Sales page';

@@ -27,8 +27,42 @@ function Filters($location) {
     }
   };
 
+  var sales = function(currentAuth) {
+    var isSales;
+    var email = currentAuth.password.email;
+    var salesAssistants = [
+      'testemailofmine@gmail.com',
+      'sales@one.com',
+      'sales@two.com'
+    ];
+
+    for(var i = 0; i < salesAssistants.length; i++) {
+      if (email === salesAssistants[i]) {
+        isSales = true;
+      }
+    }
+
+    if (isSales === true) {
+      return true;
+    } else {
+      return false;
+    }
+
+  }
+
+  var admin = function(currentAuth) {
+    var email = currentAuth.password.email;
+    if (email === 'admin@one.com') {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   return {
     guest: guest,
-    technician: technician
+    technician: technician,
+    admin: admin,
+    sales: sales
   };
 }
