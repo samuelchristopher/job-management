@@ -1,12 +1,13 @@
 <div layout="row" layout-sm="column" layout-align="space-around">
   <md-progress-circular md-mode="indeterminate" ng-hide="doneLoading" md-diameter="70"></md-progress-circular>
 </div>
-<md-content layout-padding ng-if="doneLoading">
+<md-button class="md-primary md-raised" print-btn ng-if="doneLoading">Print summary</md-button>
+<md-content layout-padding ng-if="doneLoading" print-section>
   <h1>Technician summary</h1>
   <table class="table table-hover">
     <thead>
       <tr>
-        <th>Job #</th>
+        <th>Id</th>
         <th>Job name</th>
         <th>Customer</th>
         <th>Quote amount</th>
@@ -29,8 +30,6 @@
         <td>
           <md-checkbox aria-label="Job completed" ng-model="job.completed" class="job--done"></md-checkbox>
         </td>
-
-
       </tr>
     </tbody>
   </table>
