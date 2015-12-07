@@ -13,4 +13,8 @@ function MainController($location, $mdSidenav, $scope) {
   $scope.gotoTech = function() {
     $location.path('/technician');
   };
+
+  $scope.gotoSummary = function() {
+    $location.path('/summary/all');
+  };
 }

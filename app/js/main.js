@@ -21,6 +21,7 @@ var TechController       = require('./controllers/TechController');
 var LabelController      = require('./controllers/print/LabelController');
 var CustomerController   = require('./controllers/print/CustomerController');
 var PrintController      = require('./controllers/print/PrintController');
+var AllController        = require('./controllers/summary/AllController');
 var config               = require('./config');
 var flash                = require('./services/flash');
 var auth                 = require('./services/auth');

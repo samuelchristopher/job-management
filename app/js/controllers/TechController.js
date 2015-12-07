@@ -3,7 +3,7 @@ angular.module('jobManagement')
 
 function TechController(FiltersService, currentAuth, $location, JobsService, $scope) {
   if (!(FiltersService.technician(currentAuth) || FiltersService.admin(currentAuth))) {
-    $location.path('/');
+    return $location.path('/');
   }
   var jobs = JobsService.getJobs();
   jobs.$loaded().then(function() {

@@ -99,6 +99,15 @@ angular.module('jobManagement')
         return Auth.authRef.$requireAuth();
       }]
     }
+  })
+  .when('/summary/all', {
+    controller: 'AllController',
+    templateUrl: 'pages/summary/all.html',
+    resolve: {
+      'currentAuth': ['Auth', function(Auth) {
+        return Auth.authRef.$requireAuth();
+      }]
+    }
   });
   $locationProvider.html5Mode({
     enabled: false,
