@@ -5,5 +5,8 @@ function AllController($location, FiltersService, currentAuth, $scope) {
   if (!(FiltersService.admin(currentAuth))) {
     return $location.path('/');
   }
-  $scope.sign = 'Im here';
+
+  $scope.gotoTechnicianSummary = function() {
+    return $location.path('/summary/technician');
+  }
 }
