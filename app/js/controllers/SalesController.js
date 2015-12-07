@@ -1,7 +1,10 @@
 angular.module('jobManagement')
-  .controller('SalesController', ['$location', '$mdToast', 'FlashService', '$mdDialog', '$scope', 'JobsService', '$mdBottomSheet', SalesController]);
+  .controller('SalesController', ['currentAuth', 'FiltersService', '$location', '$mdToast', 'FlashService', '$mdDialog', '$scope', 'JobsService', '$mdBottomSheet', SalesController]);
 
-function SalesController($location, $mdToast, FlashService, $mdDialog, $scope, JobsService, $mdBottomSheet) {
+function SalesController(currentAuth, FiltersService, $location, $mdToast, FlashService, $mdDialog, $scope, JobsService, $mdBottomSheet) {
+  if (FiltersService.technician(currentAuth)) {
+    return $location.path('/');
+  }
   $scope.message = 'Sales page';
   $scope.jobsLoaded = false;
   $scope.jobs = JobsService.getJobs();
